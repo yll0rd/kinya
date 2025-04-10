@@ -1,0 +1,8 @@
+round-progress {
+    height: 120px;
+    width: 120px !important;
+}
+
+#progress-wrapper {
+    margin: 0 auto;
+}
