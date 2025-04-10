@@ -1,0 +1,104 @@
+<header class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="container flex h-16 items-center justify-between px-4 mx-auto">
+      <a routerLink="/" class="flex items-center gap-2 font-bold">
+        <lucide-angular [img]="LucideGlobe" class="h-6 w-6 text-blue-600 dark:text-blue-400"></lucide-angular>
+        <span class="hidden sm:inline-block">Kinyarwanda Learning</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      
+      <nav class="hidden md:flex md:items-center md:gap-6">
+        <div class="flex gap-4">
+          <a 
+            *ngFor="let route of routes()"
+            [routerLink]="route.disabled ? null : route.href"
+            [class.pointer-events-none]="route.disabled"
+            [class.opacity-50]="route.disabled"
+            [class.bg-accent]="isActive(route.href)"
+            [class.text-accent-foreground]="isActive(route.href)"
+            class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+          >
+            <!-- <span *ngIf="route.icon">{{ route.icon }}</span> -->
+            <span>{{ route.name }}</span>
+          </a>
+        </div>
+        <!-- <NavigationMenu>
+          <NavigationMenuList>
+            {routes.map((route) => (
+              <NavigationMenuItem key={route.name}>
+                <Link href={route.disabled ? "#" : route.href} legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "flex items-center gap-1",
+                      route.disabled && "pointer-events-none opacity-50",
+                      pathname === route.href && "bg-accent text-accent-foreground",
+                    )}
+                  >
+                    {route.icon}
+                    {route.name}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu> -->
+
+        <div class="flex items-center gap-2">
+          <!-- <LanguageSwitcher /> -->
+          <!-- <ThemeToggle />  -->
+           
+          <p-button size="small">
+            <a routerLink="/login">
+              Sign In
+              </a>
+          </p-button>
+        </div>
+      </nav>
+
+      <!-- Mobile Navigation -->
+      <div class="flex items-center gap-4 md:hidden">
+         <!-- <ThemeToggle />
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon">
+              <LucideMenu className="h-5 w-5" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right">
+            <div className="flex flex-col gap-6 py-6">
+              <Link href="/" className="flex items-center gap-2 font-bold">
+                <LucideGlobe className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                <span>Kinyarwanda Learning</span>
+              </Link>
+              <nav className="flex flex-col gap-4">
+                {routes.map((route) => (
+                  <Link
+                    key={route.name}
+                    href={route.disabled ? "#" : route.href}
+                    className={cn(
+                      "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium",
+                      route.disabled && "pointer-events-none opacity-50",
+                      pathname === route.href
+                        ? "bg-accent text-accent-foreground"
+                        : "hover:bg-accent hover:text-accent-foreground",
+                    )}
+                  >
+                    {route.icon}
+                    {route.name}
+                  </Link>
+                ))}
+              </nav>
+              <div className="flex flex-col gap-4">
+                <LanguageSwitcher />
+                <Button asChild>
+                  <Link href="/login">Sign In</Link>
+                </Button>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet> -->
+      </div>
+    </div>
+  </header>
