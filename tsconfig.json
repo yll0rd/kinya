@@ -32,6 +32,12 @@
       ],
       "@spartan-ng/ui-card-helm": [
         "./src/app/components/shared/ui/ui-card-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-input-helm": [
+        "./src/app/components/shared/ui/ui-input-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-formfield-helm": [
+        "./src/app/components/shared/ui/ui-formfield-helm/src/index.ts"
       ]
     }
   },
