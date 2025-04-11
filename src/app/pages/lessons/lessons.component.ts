@@ -12,7 +12,6 @@ import {
 } from '@spartan-ng/ui-tabs-helm';
 import {
   HlmCardContentDirective,
-  HlmCardDescriptionDirective,
   HlmCardDirective,
   HlmCardFooterDirective,
   HlmCardHeaderDirective,
