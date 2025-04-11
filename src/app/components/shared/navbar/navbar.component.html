@@ -1,8 +1,9 @@
 <header class="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-    <div class="container flex h-16 items-center justify-between px-4 mx-auto">
+    <div class="container flex h-20 items-center justify-between px-4 mx-auto">
       <a routerLink="/" class="flex items-center gap-2 font-bold">
-        <i class="pi pi-globe text-blue-600 dark:text-blue-400" style="font-size: 1.5rem;"></i>
-        <span class="hidden sm:inline-block">Kinyarwanda Learning</span>
+        <!-- <i class="pi pi-globe text-blue-600 dark:text-blue-400" style="font-size: 1.5rem;"></i> -->
+        <!-- <span class="hidden sm:inline-block font-satoshi font-semibold text-lg tracking-wide">Kinya</span> -->
+         <img src="/kinya-logo.png" alt="logo" class="w-30 h-25 rounded-full" />
       </a>
 
       <!-- Desktop Navigation -->
@@ -18,7 +19,7 @@
             [class.text-accent-foreground]="isActive(route.href)"
             class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
           >
-            <!-- <span *ngIf="route.icon">{{ route.icon }}</span> -->
+            <i class="{{ route.icon }}" style="font-size: 1rem;"></i>
             <span>{{ route.name }}</span>
           </a>
         </div>
@@ -28,7 +29,7 @@
               <NavigationMenuItem key={route.name}>
                 <Link href={route.disabled ? "#" : route.href} legacyBehavior passHref>
                   <NavigationMenuLink
-                    className={cn(
+                    class={cn(
                       navigationMenuTriggerStyle(),
                       "flex items-center gap-1",
                       route.disabled && "pointer-events-none opacity-50",
@@ -58,26 +59,64 @@
 
       <!-- Mobile Navigation -->
       <div class="flex items-center gap-4 md:hidden">
-         <!-- <ThemeToggle />
-        <Sheet>
+         <app-theme-toggle />
+
+         <hlm-sheet>
+
+          <button hlmBtn brnSheetTrigger variant="outline" side="right">
+            <i class="pi pi-bars" style="font-size: 1.25rem;"></i>
+              <span class="sr-only">Toggle menu</span>
+          </button> 
+          <hlm-sheet-content *brnSheetContent='let ctx'>
+            <div class="flex flex-col gap-6 py-6">
+              <a routerLink="/" class="flex items-center gap-2 font-bold">
+                <i class="pi pi-globe text-blue-600 dark:text-blue-400" style="font-size: 1.5rem;"></i>
+                <span>Kinya</span>
+              </a>
+              <nav class="flex flex-col gap-4">
+                @for (route of routes() ; track $index) {
+                  <a
+                    [routerLink]="route.disabled ? null : route.href"
+                    [class.pointer-events-none]="route.disabled"
+                    [class.opacity-50]="route.disabled"
+                    [class.bg-accent]="isActive(route.href)"
+                    [class.text-accent-foreground]="isActive(route.href)"
+                    class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <i class="{{ route.icon }}" style="font-size: 1rem;"></i>
+                    <span>{{ route.name }}</span>
+                </a>
+                }
+              </nav>
+              <div class="flex flex-col gap-4">
+                <!-- <LanguageSwitcher /> -->
+                <button hlmBtn>
+                  <a routerLink="/login">Sign In</a>
+                </button>
+              </div>
+            </div>
+          </hlm-sheet-content>
+      </hlm-sheet>
+          
+        <!-- <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">
-              <LucideMenu className="h-5 w-5" />
-              <span className="sr-only">Toggle menu</span>
+              <LucideMenu class="h-5 w-5" />
+              <span class="sr-only">Toggle menu</span>
             </Button>
           </SheetTrigger>
           <SheetContent side="right">
-            <div className="flex flex-col gap-6 py-6">
-              <Link href="/" className="flex items-center gap-2 font-bold">
-                <LucideGlobe className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+            <div class="flex flex-col gap-6 py-6">
+              <Link href="/" class="flex items-center gap-2 font-bold">
+                <LucideGlobe class="h-6 w-6 text-blue-600 dark:text-blue-400" />
                 <span>Kinyarwanda Learning</span>
               </Link>
-              <nav className="flex flex-col gap-4">
+              <nav class="flex flex-col gap-4">
                 {routes.map((route) => (
                   <Link
                     key={route.name}
                     href={route.disabled ? "#" : route.href}
-                    className={cn(
+                    class={cn(
                       "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium",
                       route.disabled && "pointer-events-none opacity-50",
                       pathname === route.href
@@ -90,7 +129,7 @@
                   </Link>
                 ))}
               </nav>
-              <div className="flex flex-col gap-4">
+              <div class="flex flex-col gap-4">
                 <LanguageSwitcher />
                 <Button asChild>
                   <Link href="/login">Sign In</Link>
@@ -99,6 +138,8 @@
             </div>
           </SheetContent>
         </Sheet> -->
+
+        
       </div>
     </div>
   </header>
