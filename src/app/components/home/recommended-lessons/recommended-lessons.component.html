@@ -1,0 +1,31 @@
+<!-- {/* Recommended Lessons -->
+<section class="mb-12">
+    <h2 class="mb-6 text-2xl font-bold">Recommended Lessons</h2>
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+        @for(lesson of recommendedLessons ; track lesson.id) {
+        <p-card class="transition-all hover:shadow-md rounded-lg">
+            <ng-template #header>
+                <div class="space-y-1.5 p-6 flex flex-row items-center justify-between pb-2">
+                    <p class="font-semibold tracking-tight text-lg"> {{ lesson.title }}</p>
+                    <i class="{{ lesson.icon }}" style="font-size: 2rem"></i>
+                </div>
+            </ng-template>
+            <div class="mt-2 w-full">
+                <div class="h-2 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                    <div class="h-2 rounded-full bg-green-500" [style.width.%]="lesson.completion"></div>
+                </div>
+                <p class="mt-1 text-right text-sm">{{ lesson.completion }}% complete</p>
+            </div>
+            <ng-template #footer>
+                <div class="flex gap-4 mt-1">
+                    <app-button class="w-full" variant="outline" [routerLink]="`/lessons/${lesson.id}`" class="w-full">
+                        {{ lesson.completion > 0 ? 'Continue' : 'Start' }}
+                    </app-button>
+                </div>
+            </ng-template>
+        </p-card>
+        }
+
+    </div>
+</section>
