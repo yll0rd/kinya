@@ -2,6 +2,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,8 @@ import { ButtonModule } from 'primeng/button';
     RouterLink,
     NgFor,
     // NgIf,
-    ButtonModule
+    ButtonModule,
+    ThemeToggleComponent
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'

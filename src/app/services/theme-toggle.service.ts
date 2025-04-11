@@ -22,7 +22,7 @@ export class ThemeToggleService {
         this.applyTheme('system');
       }
     })
-    
+
     // Apply initial theme
     this.applyTheme(this.themeSubject.value);
   }
@@ -34,6 +34,15 @@ export class ThemeToggleService {
 
   getCurrentTheme(): Theme {
     return this.themeSubject.value;
+  }
+
+  isDarkMode(): boolean {
+    const theme = this.themeSubject.value;
+    if (theme === 'dark') return true;
+    if (theme === 'light') return false;
+    
+    // System preference
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
   private applyTheme(theme: Theme): void {
