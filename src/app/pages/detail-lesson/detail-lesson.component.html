@@ -1,0 +1,99 @@
+<main class="container mx-auto px-4 py-8">
+    <!-- Breadcrumb navigation -->
+    <nav class="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
+        <a routerLink="/" class="flex items-center gap-1 hover:text-foreground">
+            <i class="pi pi-home" style="font-size: 1rem;"></i>
+            <span>Home</span>
+        </a>
+        <i class="pi pi-chevron-right" style="font-size: 1rem;"></i>
+        <a routerLink="/lessons" class="hover:text-foreground">
+            Lessons
+        </a>
+        <i class="pi pi-chevron-right" style="font-size: 1rem;"></i>
+        <span class="font-medium text-foreground">{{category.title}}</span>
+    </nav>
+
+    <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+        <div class="flex items-center gap-3">
+            <h1 class="text-3xl font-bold">{{category.title}}</h1>
+            <span hlmBadge variant="outline" class="py-1">
+                {{category.progress}}% complete
+            </span>
+        </div>
+        <button hlmBtn variant="outline" asChild>
+            <a routerLink="/lessons">
+                <i class="pi pi-chevron-left mr-2 h-4 w-4" style="font-size: 1rem;"></i>
+                Back to Lessons
+            </a>
+        </button>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <!-- Left: Phrase list -->
+        <div class="lg:col-span-2">
+            <div hlmCard>
+                <div hlmCardHeader>
+                    <h2 hlmCardTitle>Phrases</h2>
+                </div>
+                <div hlmCardContent>
+                    <ul class="space-y-4">
+                        <!-- Loop through phrases and display them -->
+                        @for(phrase of phrases; track phrase.id) {
+                        <li>
+                            <div
+                                class="flex flex-col gap-2 rounded-lg border p-4 sm:flex-row sm:items-center sm:justify-between">
+                                <div>
+                                    <p class="text-lg font-medium">{{phrase.kinyarwanda}}</p>
+                                    <p class="text-sm text-muted-foreground">{{phrase.english}}</p>
+                                </div>
+                                <Button variant="outline" size="icon" class="h-8 w-8 shrink-0">
+                                    <i class="pi pi-play" style="font-size: 1rem;"></i>
+                                    <span class="sr-only">Play audio for {{phrase.kinyarwanda}}</span>
+                                </Button>
+                            </div>
+                        </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Fixed panel -->
+        <div class="lg:sticky lg:top-20">
+            <div class="space-y-6">
+                <div hlmCard>
+                    <div hlmCardHeader>
+                        <h2 hlmCardTitle>Quick Quiz</h2>
+                    </div>
+                    <div hlmCardContent>
+                        <p class="mb-4 text-sm">Test your knowledge of these greetings with a quick quiz.</p>
+                        <button hlmBtn class="w-full">Start Quiz</button>
+                    </div>
+                </div>
+
+                <div hlmCard>
+                    <div hlmCardHeader>
+                        <h2 hlmCardTitle>Key Vocabulary</h2>
+                    </div>
+                    <div hlmCardContent>
+                        
+                        <ul class="space-y-2">
+                             <!-- Loop through phrases and display them -->
+                        @for(item of keyVocabulary; track $index) {
+                            <li>
+                                <div class="flex items-center justify-between">
+                                    <span class="font-medium">{{item.word}}</span>
+                                    <span class="text-sm text-muted-foreground">{{item.translation}}</span>
+                                </div>
+                                @if($index < keyVocabulary.length - 1) {
+                                    <brn-separator hlmSeparator class="my-2"/>
+                                }
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

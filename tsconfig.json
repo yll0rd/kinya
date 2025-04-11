@@ -14,6 +14,7 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
+    "module": "ES2022",
     "paths": {
       "@spartan-ng/ui-badge-helm": [
         "./src/app/components/shared/ui/ui-badge-helm/src/index.ts"
@@ -38,6 +39,9 @@
       ],
       "@spartan-ng/ui-formfield-helm": [
         "./src/app/components/shared/ui/ui-formfield-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-separator-helm": [
+        "./src/app/components/shared/ui/ui-separator-helm/src/index.ts"
       ]
     }
   },
