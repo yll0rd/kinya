@@ -4,7 +4,7 @@
     <div class="flex flex-wrap items-center justify-center gap-8">
         <div class="text-center">
             <div class="relative w-fit" id="progress-wrapper">
-                <div class="absolute top-1/2 transform -translate-1/2 left-1/2">{{ overallProgress.current }} / {{
+                <div class="absolute top-1/2 transform -translate-1/2 left-1/2 w-[70px]">{{ overallProgress.current }} / {{
                     overallProgress.max }}</div>
                 <round-progress class="size-[120px] w-full" [current]="overallProgress.current"
                     [max]="overallProgress.max" [rounded]="true" [responsive]="true" [stroke]="20" />
