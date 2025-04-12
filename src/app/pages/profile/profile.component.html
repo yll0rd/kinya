@@ -1,0 +1,102 @@
+<main class="container mx-auto px-4 py-8">
+    <h1 class="mb-8 text-3xl font-bold">Your Profile</h1>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <!-- Left column: User info -->
+        <div class="md:col-span-1">
+            <div hlmCard>
+                <div hlmCardHeader class="text-center">
+                    <div class="mx-auto mb-4">
+                        <hlm-avatar class="h-24 w-24">
+                            <img [src]="user.avatarUrl" alt='spartan logo. Resembling a spartanic shield'
+                                hlmAvatarImage />
+                            <span hlmAvatarFallback>{{user.name.charAt(0)}}</span>
+                        </hlm-avatar>
+                    </div>
+                    <h3 hlmCardTitle>{{user.name}}</h3>
+                    <p hlmCardDescription>{{user.email}}</p>
+                </div>
+                <div hlmCardContent>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium">Email</span>
+                            <span class="text-sm text-muted-foreground">{{user.email}}</span>
+                        </div>
+                        <brn-separator hlmSeparator />
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium">Member since</span>
+                            <span class="text-sm text-muted-foreground">January 2023</span>
+                        </div>
+                        <brn-separator hlmSeparator />
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm font-medium">Language</span>
+                            <span class="text-sm text-muted-foreground">English</span>
+                        </div>
+                    </div>
+                </div>
+                <div hlmCardFooter class="flex flex-col gap-2">
+                    <button hlmBtn variant="outline" class="w-full">
+                        <i class="mr-2 pi pi-pen-to-square" [style.fontSize.rem]="1"></i>
+                        Edit Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right column: Stats and achievements -->
+        <div class="md:col-span-2">
+            <div class="space-y-8">
+                <!-- Stats -->
+                <div hlmCard>
+                    <div hlmCardHeader>
+                        <h3 hlmCardTitle>Your Stats</h3>
+                    </div>
+                    <div hlmCardContent>
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div class="rounded-lg border p-4">
+                                <div class="text-sm font-medium text-muted-foreground">Lessons Completed</div>
+                                <div class="mt-1 text-3xl font-bold">{{user.stats.lessonsCompleted}}</div>
+                            </div>
+                            <div class="rounded-lg border p-4">
+                                <div class="text-sm font-medium text-muted-foreground">Current Streak</div>
+                                <div class="mt-1 text-3xl font-bold">{{user.stats.streakDays}} days</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div hlmCard>
+                    <div hlmCardHeader>
+                        <h3 hlmCardTitle>Achievements</h3>
+                    </div>
+                    <div hlmCardContent>
+                        <div class="space-y-4">
+                            @for (achievement of user.achievements ; track achievement.id) {
+                                <div class="flex items-start gap-4 rounded-lg border p-4">
+                                    <i class="rounded-full bg-primary/10 p-2 {{ achievement.icon }}" [style.fontSize.rem]="'1.25'"></i>
+                                    <div>
+                                        <h3 class="font-medium">{{achievement.title}}</h3>
+                                        <p class="text-sm text-muted-foreground">{{achievement.description}}</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Account actions -->
+                <div class="flex flex-col gap-4 sm:flex-row">
+                    <button hlmBtn variant="outline" class="flex-1">
+                        <i class="mr-2 pi pi-sign-out" [style.fontSize.rem]="1"></i>
+                        Sign Out
+                    </button>
+                    <button hlmBtn variant="destructive" class="flex-1">
+                        <i class="mr-2 pi pi-trash" [style.fontSize.rem]="1"></i>
+                        Delete Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
