@@ -1,0 +1,84 @@
+<div class="container flex h-screen flex-col items-center justify-center px-4 py-8">
+    <div class="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+        <div class="flex flex-col items-center space-y-2 text-center">
+            <img src="/kinya-logo.png" alt="logo" class="w-30 h-25 rounded-full" />
+            <h1 class="text-2xl font-bold">Welcome back</h1>
+            <p class="text-sm text-muted-foreground">Sign in to continue learning Kinyarwanda</p>
+        </div>
+
+        <div hlmCard>
+            <div hlmCardHeader>
+                <h3 hlmCardTitle>Sign In</h3>
+                <p hlmCardDescription>Enter your email and password to sign in to your account</p>
+            </div>
+            <div hlmCardContent class="space-y-4">
+                <div class="space-y-2">
+                    <label hlmLabel for="email">Label</label>
+                    <input hlmInput id="email" type="email" placeholder="name@example.com" class="w-full" />
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <label hlmLabel for="password">Password</label>
+                        <a routerLink="#" class="text-xs text-muted-foreground hover:text-primary">
+                            Forgot password?
+                        </a>
+                    </div>
+                    <input hlmInput id="password" type="password" class="w-full" />
+                </div>
+
+
+
+            </div>
+            <div hlmCardFooter class="flex flex-col">
+                <button hlmBtn class="w-full">Sign In</button>
+                <div class="mt-4 text-center text-sm">
+                    Don&apos;t have an account?{{" "}}
+                    <a routerLink="/signup" class="text-primary hover:underline">
+                        Sign up
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+                <brn-separator hlmSeparator class="w-full" />
+            </div>
+            <div class="relative flex justify-center text-xs uppercase">
+                <span class="bg-background px-2 text-muted-foreground">Or continue with</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <button hlmBtn variant="outline" disabled class="w-full">
+                Google
+            </button>
+            <button hlmBtn variant="outline" disabled class="w-full">
+                Facebook
+            </button>
+        </div>
+
+        <div class="text-center text-sm text-muted-foreground">
+            <div class="flex items-center justify-center gap-2">
+                <a routerLink="#" class="hover:text-primary">
+                    Terms
+                </a>
+                <span>·</span>
+                <a routerLink="#" class="hover:text-primary">
+                    Privacy
+                </a>
+                <span>·</span>
+                <div class="flex items-center gap-1">
+                    <i class="pi pi-globe" [style.fontSize.rem]="'0.75'"></i>
+                    <select
+                        class="appearance-none border-none bg-transparent text-sm text-muted-foreground focus:outline-none" style="width: fit-content;">
+                        <option value="en" class="w-fit">English</option>
+                        <option value="rw" class="w-fit">Kinyarwanda</option>
+                        <option value="fr" class="w-fit">French</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
