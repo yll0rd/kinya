@@ -48,6 +48,9 @@
       ],
       "@spartan-ng/ui-label-helm": [
         "./src/app/components/shared/ui/ui-label-helm/src/index.ts"
+      ],
+      "@spartan-ng/ui-checkbox-helm": [
+        "./src/app/components/shared/ui/ui-checkbox-helm/src/index.ts"
       ]
     }
   },
