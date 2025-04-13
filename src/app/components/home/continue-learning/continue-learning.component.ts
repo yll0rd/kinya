@@ -23,7 +23,7 @@ export class ContinueLearningComponent {
     id: 1,
     title: "Common Greetings",
     category: "Greetings",
-    progress: 65,
+    progress: 75,
     lastAccessed: "2 days ago",
   }  
 }
