@@ -1,12 +1,31 @@
 import { Component, Input } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { CustomButtonComponent } from '../../shared/ui/button/button.component';
 import { RouterLink } from '@angular/router';
+import {
+  HlmCardContentDirective,
+  HlmCardDirective,
+  HlmCardFooterDirective,
+  HlmCardHeaderDirective,
+  HlmCardTitleDirective,
+} from '@spartan-ng/ui-card-helm';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
   selector: 'app-recommended-lessons',
-  imports: [CardModule, ButtonModule, CustomButtonComponent, RouterLink],
+  imports: [
+    HlmCardContentDirective,
+    HlmCardDirective,
+    HlmCardFooterDirective,
+    HlmCardHeaderDirective,
+    HlmCardTitleDirective,
+
+    HlmButtonDirective,
+
+    CardModule,
+    ButtonModule,
+    RouterLink
+  ],
   templateUrl: './recommended-lessons.component.html',
   styleUrl: './recommended-lessons.component.css'
 })
