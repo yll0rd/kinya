@@ -17,12 +17,10 @@
             </div>
             <p class="mt-1 text-right text-sm">65% complete</p>
           </div>
-          <app-button>
-            <a routerLink="/lessons/greetings/1" class="flex items-center gap-x-2">
-              <span class="w-fit">Continue</span>
-              <i class="pi pi-chevron-right" style="font-size: 1rem;"></i>  
-            </a>
-          </app-button>
+          <button hlmBtn [routerLink]="`/lessons/${continueLesson.category.toLowerCase()}/${continueLesson.id}`">
+            <span class="w-fit">Continue</span>
+            <i class="pi pi-chevron-right ml-2" style="font-size: 1rem;"></i>  
+          </button>
         </div>
       </div>
     </div>
