@@ -1,7 +1,6 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
 import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
 import { BrnSheetContentDirective, BrnSheetTriggerDirective } from '@spartan-ng/brain/sheet';
 import {
@@ -25,7 +24,6 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
     RouterLink,
     NgFor,
     // NgIf,
-    ButtonModule,
     ThemeToggleComponent
   ],
   templateUrl: './navbar.component.html',

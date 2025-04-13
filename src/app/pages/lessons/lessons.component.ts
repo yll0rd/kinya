@@ -1,7 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { BadgeModule } from 'primeng/badge';
-import { CardModule } from 'primeng/card';
-import { TabsModule } from 'primeng/tabs';
 import { RouterLink } from '@angular/router';
 import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 import {
@@ -23,8 +20,6 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 @Component({
   selector: 'app-lessons',
   imports: [
-    BadgeModule,
-    CardModule,
     HlmBadgeDirective,
     HlmButtonDirective,
     HlmTabsTriggerDirective,
@@ -38,7 +33,6 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
     HlmCardHeaderDirective,
     HlmCardTitleDirective,
     RouterLink,
-    TabsModule
   ],
   templateUrl: './lessons.component.html',
   styleUrl: './lessons.component.css'

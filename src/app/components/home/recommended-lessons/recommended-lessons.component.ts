@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
 import { RouterLink } from '@angular/router';
 import {
   HlmCardContentDirective,
@@ -22,8 +20,6 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
     HlmButtonDirective,
 
-    CardModule,
-    ButtonModule,
     RouterLink
   ],
   templateUrl: './recommended-lessons.component.html',
