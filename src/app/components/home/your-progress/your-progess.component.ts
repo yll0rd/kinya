@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { RoundProgressComponent } from 'angular-svg-round-progressbar';
 
 @Component({
-  selector: 'app-your-progess',
+  selector: 'app-your-progress',
   imports: [RoundProgressComponent],
   templateUrl: './your-progess.component.html',
   styleUrl: './your-progess.component.css'
