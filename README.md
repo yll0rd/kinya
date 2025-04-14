@@ -1,59 +1,108 @@
 # Kinya
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+Welcome to **Kinya** — an Angular-based modern web application built to help tourists, internationals, and anyone interested in learning the Kinyarwanda language. Designed with simplicity and structure in mind, the app offers a beginner-friendly and immersive language learning experience.
 
-## Development server
+🌐 **Live Site:** [kinya.vercel.app](https://kinya.vercel.app)
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## 📁 Project Structure
+
+```
+yll0rd-kinya/
+├── README.md                  # Project documentation
+├── angular.json               # Angular workspace configuration
+├── package.json               # Project dependencies and scripts
+├── tsconfig*.json             # TypeScript configurations
+├── .editorconfig, .postcssrc  # Editor and CSS tool configurations
+├── public/                    # Static assets
+└── src/                       # Main application code
+    ├── index.html             # HTML entry point
+    ├── main.ts                # App bootstrap file
+    ├── styles.css             # Global styles
+    └── app/                   # Core app folder
+        ├── app.component.*   # Root component
+        ├── app.routes.ts     # App routing configuration
+        ├── components/       # Reusable UI and home modules
+        │   └── shared/       # Navbar, footer, theme toggle, and UI primitives
+        ├── pages/            # Page-level components (home, login, signup, etc.)
+        └── services/         # Injectable services (e.g., theme toggle)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🚀 Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- 🧭 **Structured Navigation** — Responsive navbar and footer
+- 🌗 **Dark Mode Toggle** — Accessible from anywhere in the app
+- 🏠 **Home Dashboard** — Personalized lessons, progress, and recommendations
+- 📚 **Lessons** — Structured, beginner-friendly lessons
+- 📖 **Lesson Detail** — Interactive views for deep-dive lessons
+- 👤 **User Authentication** — Simple login and signup system
+- 📈 **Progress Tracking** — Visual feedback on learning status
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🛠️ Tech Stack
 
-```bash
-ng generate --help
-```
+- **Frontend**: Angular 17+  
+- **Styling**: CSS, Tailwind (via UI primitives)  
+- **Component Library**: Spartan-ng UI components
+- **Deployment**: Vercel  
 
-## Building
+---
 
-To build the project run:
+## 🧑‍💻 Running Locally
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+To get the app running locally:
 
 ```bash
-ng test
+# Clone the repository
+git clone https://github.com/yll0rd/kinya.git
+cd kinya
+
+# Install dependencies
+pnpm install
+
+# Start the development server
+pnpm start
 ```
 
-## Running end-to-end tests
+The app will be running at `http://localhost:4200`.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## 📦 Scripts
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+| Script           | Description                 |
+|------------------|-----------------------------|
+| `pnpm start`     | Runs the app locally        |
+| `pnpm build`     | Builds the app for prod     |
+| `pnpm test`      | Runs unit tests             |
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📁 Folder Highlights
+
+- `src/app/components/home/` — Dashboard widgets: continue learning, your progress, recommended lessons.
+- `src/app/components/shared/` — Navbar, footer, and helm-based UI components (e.g., buttons, cards, forms).
+- `src/app/pages/` — Login, signup, lesson explorer, and profile pages.
+- `src/app/services/` — Services for app-level logic like theme management.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please fork the repository and submit a pull request.
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## ✨ Author
+
+Built with ❤️ by `yll0rd`. Visit [kinya.vercel.app](https://kinya.vercel.app) and start your Kinyarwanda learning journey today!
