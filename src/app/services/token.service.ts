@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { JwtPayload } from '../models/JWTPayload.model';
+import { AuthUser } from '../models/AuthUser.model';
 
 const TOKEN_KEY = 'auth-token';
 // const REFRESH_TOKEN_KEY = 'auth-refresh-token';
@@ -38,10 +39,10 @@ export class TokenService {
   //   return window.localStorage.getItem(REFRESH_TOKEN_KEY);
   // }
 
-  // public saveUser(user: User): void {
-  //   window.localStorage.removeItem(USER_KEY);
-  //   window.localStorage.setItem(USER_KEY, JSON.stringify(user));
-  // }
+  public saveUser(user: AuthUser): void {
+    window.localStorage.removeItem(USER_KEY);
+    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
 
   // public getUser(): User | null {
   //   const user = window.localStorage.getItem(USER_KEY);

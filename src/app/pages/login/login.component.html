@@ -6,31 +6,31 @@
             <p class="text-sm text-muted-foreground">Sign in to continue learning Kinyarwanda</p>
         </div>
 
-        <div hlmCard>
+        <form hlmCard [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div hlmCardHeader>
                 <h3 hlmCardTitle>Sign In</h3>
                 <p hlmCardDescription>Enter your email and password to sign in to your account</p>
             </div>
             <div hlmCardContent class="space-y-4">
-                <div class="space-y-2">
+                <hlm-form-field class="space-y-2">
                     <label hlmLabel for="email">Email</label>
-                    <input hlmInput id="email" type="email" placeholder="name@example.com" class="w-full" />
-                </div>
-                <div class="space-y-2">
+                    <input hlmInput id="email" type="email" placeholder="name@example.com" class="w-full" formControlName="email" />
+                </hlm-form-field>
+                <hlm-form-field class="space-y-2">
                     <div class="flex items-center justify-between">
                         <label hlmLabel for="password">Password</label>
                         <a routerLink="#" class="text-xs text-muted-foreground hover:text-primary">
                             Forgot password?
                         </a>
                     </div>
-                    <input hlmInput id="password" type="password" class="w-full" />
-                </div>
+                    <input hlmInput id="password" type="password" class="w-full" formControlName="password" />
+                </hlm-form-field>
 
 
 
             </div>
             <div hlmCardFooter class="flex flex-col">
-                <button hlmBtn class="w-full">Sign In</button>
+                <button hlmBtn class="w-full" [disabled]="loginForm.invalid">Sign In</button>
                 <div class="mt-4 text-center text-sm">
                     Don&apos;t have an account?{{" "}}
                     <a routerLink="/signup" class="text-primary hover:underline">
@@ -38,7 +38,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </form>
 
 
         <div class="relative">
