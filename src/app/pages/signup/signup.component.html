@@ -6,31 +6,34 @@
             <p class="text-sm text-muted-foreground">Sign up to start learning Kinyarwanda</p>
         </div>
 
-        <div hlmCard>
+        <form hlmCard [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
             <div hlmCardHeader>
                 <h3 hlmCardTitle>Sign Up</h3>
                 <p hlmCardDescription>Enter your information to create an account</p>
             </div>
             <div hlmCardContent class="space-y-4">
-                <div class="space-y-2">
+                <hlm-form-field class="space-y-2">
                     <label hlmLabel for="name">Name</label>
-                    <input hlmInput id="name" placeholder="ohn Doe" class="w-full" />
-                </div>
-                <div class="space-y-2">
+                    <input id="name" placeholder="ohn Doe" class="w-full" formControlName="name" hlmInput />
+                    <hlm-error>Your name is required</hlm-error>
+                </hlm-form-field>
+                <hlm-form-field class="space-y-2">
                     <label hlmLabel for="email">Email</label>
-                    <input hlmInput id="email" type="email" placeholder="name@example.com" class="w-full" />
-                </div>
-                <div class="space-y-2">
+                    <input hlmInput id="email" type="email" placeholder="name@example.com" class="w-full"
+                        formControlName="email" />
+                    <hlm-hint>This is your email address.</hlm-hint>
+                </hlm-form-field>
+                <hlm-form-field class="space-y-2">
                     <div class="flex items-center justify-between">
                         <label hlmLabel for="password">Password</label>
                         <a routerLink="#" class="text-xs text-muted-foreground hover:text-primary">
                             Forgot password?
                         </a>
                     </div>
-                    <input hlmInput id="password" type="password" class="w-full" />
-                </div>
+                    <input hlmInput id="password" type="password" class="w-full" formControlName="password" />
+                </hlm-form-field>
                 <div class="flex items-center gap-x-2">
-                    <hlm-checkbox id="terms" />
+                    <hlm-checkbox formControlName="acceptTerms" id="terms"  />
                     <label hlmLabel for="terms"
                         class="text-sm leading-tight text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                         I agree to the{{" "}}
@@ -45,7 +48,7 @@
                 </div>
             </div>
             <div hlmCardFooter class="flex flex-col">
-                <button hlmBtn class="w-full">Create Account</button>
+                <button hlmBtn class="w-full" [disabled]="signUpForm.invalid">Create Account</button>
                 <div class="mt-4 text-center text-sm">
                     Don&apos;t have an account?{{" "}}
                     <a routerLink="/login" class="text-primary hover:underline">
@@ -53,7 +56,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </form>
 
         <div class="relative">
             <div class="absolute inset-0 flex items-center">
