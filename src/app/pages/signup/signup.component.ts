@@ -18,6 +18,8 @@ import { HlmFormFieldModule } from '@spartan-ng/ui-formfield-helm';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { first } from 'rxjs/operators';
+import { toast } from 'ngx-sonner';
+import {NgClass} from '@angular/common';
 
 
 @Component({
@@ -43,6 +45,7 @@ import { first } from 'rxjs/operators';
 
     HlmFormFieldModule,
     HlmCheckboxComponent,
+    NgClass,
     RouterLink,
     ReactiveFormsModule
   ],
@@ -51,6 +54,7 @@ import { first } from 'rxjs/operators';
 })
 export class SignupComponent {
   signUpForm: FormGroup;
+  loading = false;
 
   constructor(
     private router: Router,
@@ -71,22 +75,33 @@ export class SignupComponent {
 
   get f() { return this.signUpForm.controls; }
 
+  set f(data: { [key: string]: any }) {
+    Object.keys(data).forEach((key) => {
+      if (this.signUpForm.controls[key]) {
+        this.signUpForm.controls[key].setValue(data[key]);
+      }
+    });
+  }
 
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.warn(this.signUpForm.value);
 
-    this.authService.register(this.f['name'].value, this.f['email'].value, this.f['password'].value)
+    this.loading = true;
+    setTimeout(() => this.authService.register(this.f['name'].value, this.f['email'].value, this.f['password'].value)
       .pipe(first())
       .subscribe({
         next: (res) => {
           console.log(res);
+          toast.success('Registration successful. Please login.');
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          console.error(err);
+          toast.error(err.message || 'Registration failed. Please try again.');
+          this.loading = false;
+          if (err.status === 409) this.f = { email: "" };
         }
-      });
+      }), 3000)
   }
 }

@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { jwtDecode } from 'jwt-decode';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { JwtPayload } from '../models/JWTPayload.model';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { TokenService } from './token.service';
 import { AuthUser } from '../models/AuthUser.model';
@@ -21,7 +19,7 @@ export class AuthService {
   ) {
     // const user = this.tokenService.getUser();
     console.log(this.apiUrl);
-    
+
     this.currentUserSubject = new BehaviorSubject<AuthUser | null>(null);
     this.currentUser$ = this.currentUserSubject.asObservable();
   }
@@ -42,17 +40,17 @@ export class AuthService {
           // Decode the token to get user details
           const decodedToken = this.tokenService.getDecodedToken();
           if (!decodedToken) throw new Error('Failed to decode token');
-          
+
           const user = {
             userId: decodedToken.userId,
             name: decodedToken.name,
             email: decodedToken.email,
             role: decodedToken.role,
           };
-          
+
           this.tokenService.saveUser(user);
           this.currentUserSubject.next(user);
-          
+
           return user;
         }),
         catchError(error => {
@@ -67,12 +65,13 @@ export class AuthService {
       email,
       password
     }).pipe(
-      catchError(error => {
-        return throwError(() => new Error(error.message || 'Registration failed'));
+      catchError((error : HttpErrorResponse) => {
+        console.log(error);
+        return throwError(() => error.error);
       })
     );
   }
-  
+
   logout(): void {
     this.tokenService.clearStorage();
     this.currentUserSubject.next(null);

@@ -48,7 +48,13 @@
                 </div>
             </div>
             <div hlmCardFooter class="flex flex-col">
-                <button hlmBtn class="w-full" [disabled]="signUpForm.invalid">Create Account</button>
+                <button hlmBtn [ngClass]="{ 'animate-pulse': loading, 'w-full': true }" [disabled]="signUpForm.invalid">
+                  @if (loading) {
+                    <span>Creating account...</span>
+                  } @else {
+                    <span>Create Account</span>
+                  }
+                </button>
                 <div class="mt-4 text-center text-sm">
                     Don&apos;t have an account?{{" "}}
                     <a routerLink="/login" class="text-primary hover:underline">
