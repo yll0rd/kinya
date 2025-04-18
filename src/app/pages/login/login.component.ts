@@ -89,7 +89,7 @@ export class LoginComponent {
       .pipe(first())
       .subscribe({
         next: (res) => {
-          console.log(res);
+          // console.log(res);
           toast.success('Login successful.');
           this.router.navigate([this.returnUrl]);
         },

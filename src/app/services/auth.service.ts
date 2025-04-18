@@ -18,7 +18,6 @@ export class AuthService {
     private tokenService: TokenService
   ) {
     // const user = this.tokenService.getUser();
-    console.log(this.apiUrl);
 
     this.currentUserSubject = new BehaviorSubject<AuthUser | null>(null);
     this.currentUser$ = this.currentUserSubject.asObservable();

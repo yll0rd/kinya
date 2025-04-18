@@ -57,7 +57,6 @@ export class NavbarComponent {
   }
 
   isAuthenticated(): boolean {
-    console.log(this.authService.isAuthenticated());
     return this.authService.isAuthenticated();
   }
 
