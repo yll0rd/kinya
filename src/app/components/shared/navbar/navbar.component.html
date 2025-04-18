@@ -7,10 +7,10 @@
       </a>
 
       <!-- Desktop Navigation -->
-      
+
       <nav class="hidden md:flex md:items-center md:gap-6">
         <div class="flex gap-4">
-          <a 
+          <a
             *ngFor="let route of routes()"
             [routerLink]="route.disabled ? null : route.href"
             [class.pointer-events-none]="route.disabled"
@@ -48,10 +48,16 @@
         <div class="flex items-center gap-2">
           <!-- <LanguageSwitcher /> -->
           <app-theme-toggle />
-           
-          <button hlmBtn size="sm" variant="default" routerLink="/login">
-            Sign In
-          </button>
+
+          @if (isAuthenticated()) {
+            <button hlmBtn size="sm" variant="outline" (click)="signOut()">
+              Sign Out
+            </button>
+          } @else {
+            <button hlmBtn size="sm" variant="default" routerLink="/login">
+              Sign In
+            </button>
+          }
         </div>
       </nav>
 
@@ -64,7 +70,7 @@
           <button hlmBtn brnSheetTrigger variant="outline" side="right">
             <i class="pi pi-bars" style="font-size: 1.25rem;"></i>
               <span class="sr-only">Toggle menu</span>
-          </button> 
+          </button>
           <hlm-sheet-content *brnSheetContent='let ctx'>
             <div class="flex flex-col gap-6 py-6">
               <a routerLink="/" class="flex items-center gap-2 font-bold">
@@ -88,14 +94,20 @@
               </nav>
               <div class="flex flex-col gap-4">
                 <!-- <LanguageSwitcher /> -->
-                <button hlmBtn routerLink="/login">
-                  Sign In
-                </button>
+                @if (isAuthenticated()) {
+                  <button hlmBtn variant="outline" (click)="signOut()">
+                    Sign Out
+                  </button>
+                } @else {
+                  <button hlmBtn routerLink="/login">
+                    Sign In
+                  </button>
+                }
               </div>
             </div>
           </hlm-sheet-content>
       </hlm-sheet>
-          
+
         <!-- <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">
@@ -137,7 +149,7 @@
           </SheetContent>
         </Sheet> -->
 
-        
+
       </div>
     </div>
   </header>

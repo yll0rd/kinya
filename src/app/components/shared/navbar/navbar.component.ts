@@ -1,5 +1,5 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { NgFor } from '@angular/common';
+import {Component, inject, signal} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
 import { BrnSheetContentDirective, BrnSheetTriggerDirective } from '@spartan-ng/brain/sheet';
@@ -8,6 +8,7 @@ import {
   HlmSheetContentComponent,
 } from '@spartan-ng/ui-sheet-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -23,13 +24,13 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
     RouterLink,
     NgFor,
-    // NgIf,
     ThemeToggleComponent
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  private authService = inject(AuthService);
 
   routes = signal([
     {
@@ -53,5 +54,14 @@ export class NavbarComponent {
 
   isActive(url: string): boolean {
     return window.location.pathname === url;
+  }
+
+  isAuthenticated(): boolean {
+    console.log(this.authService.isAuthenticated());
+    return this.authService.isAuthenticated();
+  }
+
+  signOut() {
+    this.authService.logout()
   }
 }

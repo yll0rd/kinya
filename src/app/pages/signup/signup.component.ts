@@ -92,8 +92,7 @@ export class SignupComponent {
     setTimeout(() => this.authService.register(this.f['name'].value, this.f['email'].value, this.f['password'].value)
       .pipe(first())
       .subscribe({
-        next: (res) => {
-          console.log(res);
+        next: (_) => {
           toast.success('Registration successful. Please login.');
           this.router.navigate(['/login']);
         },
