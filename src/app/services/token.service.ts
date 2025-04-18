@@ -18,7 +18,8 @@ export class TokenService {
   }
 
   public clearStorage(): void {
-    window.localStorage.clear();
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.localStorage.removeItem(USER_KEY);
   }
 
   public saveToken(token: string): void {
@@ -55,7 +56,7 @@ export class TokenService {
   getDecodedToken(): JwtPayload | null {
       const token = this.getToken();
       if (!token) return null;
-  
+
       try {
         return jwtDecode<JwtPayload>(token);
       } catch (e) {

@@ -53,8 +53,8 @@ export class AuthService {
 
           return user;
         }),
-        catchError(error => {
-          return throwError(() => new Error(error.message || 'Login failed'));
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error.error);
         })
       );
   }
@@ -66,7 +66,6 @@ export class AuthService {
       password
     }).pipe(
       catchError((error : HttpErrorResponse) => {
-        console.log(error);
         return throwError(() => error.error);
       })
     );
@@ -80,7 +79,6 @@ export class AuthService {
   isAuthenticated(): boolean {
     const token = this.tokenService.getToken();
     // Check if token exists and is not expired
-    console.log(!!token && !this.tokenService.isTokenExpired());
     return !!token && !this.tokenService.isTokenExpired();
   }
 }
