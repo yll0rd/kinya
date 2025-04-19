@@ -1,4 +1,3 @@
-// token.interceptor.ts
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -10,6 +9,7 @@ import { Observable } from 'rxjs';
 import { TokenService } from '../services/token.service';
 import { AuthService } from '../services/auth.service';
 
+// DI-based interceptors
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
@@ -45,8 +45,8 @@ export class TokenInterceptor implements HttpInterceptor {
   private isAuthRequest(request: HttpRequest<any>): boolean {
     // Don't add token to login/register/refresh-token endpoints
     const authUrls = [
-      '/api/v1/auth/login', 
-      '/api/v1/auth/signup', 
+      '/api/v1/auth/login',
+      '/api/v1/auth/signup',
       // '/api/auth/refresh-token'
     ];
     return authUrls.some(url => request.url.includes(url));

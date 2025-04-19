@@ -35,8 +35,8 @@
                 <div hlmCard class="transition-all hover:shadow-md">
                     <div hlmCardHeader class="flex flex-row items-start justify-between pb-2">
                         <div>
-                            <h3 hlmCardTitle className="text-xl">{{category.title}}</h3>
-                            <p class="text-sm text-muted-foreground">{{category.lessons}} lessons</p>
+                            <h3 hlmCardTitle class="text-xl">{{category.title}}</h3>
+                            <p class="text-sm text-muted-foreground">{{category.phrases}} lessons</p>
                         </div>
                         <i class="{{ category.icon }}" style="font-size: 2rem;"></i>
 
@@ -44,16 +44,18 @@
                     <div hlmCardContent>
                         <p class="mb-4 text-sm">{{category.description}}</p>
                         <div class="mt-2">
+                          @if (category.progress != null) {
                             <div class="h-2 w-full rounded-full bg-secondary">
                                 <div class="h-2 rounded-full bg-green-500" [style.width.%]="category.progress">
                                 </div>
                             </div>
                             <p class="mt-1 text-right text-sm">{{category.progress}}% complete</p>
+                          }
                         </div>
                     </div>
                     <div hlmCardFooter>
                         <button hlmBtn [routerLink]="`/lessons/${category.id}`" class="w-full">
-                            {{ category.progress > 0 ? 'Continue' : 'Start Learning' }}
+                            {{ !!category.progress && category.progress > 0 ? 'Continue' : 'Start Learning' }}
                         </button>
                     </div>
                 </div>
@@ -72,8 +74,8 @@
                                 <h3 class="text-xl font-medium">{{category.title}}</h3>
                                 <p class="text-sm text-muted-foreground">{{category.description}}</p>
                                 <div class="mt-2 flex items-center gap-2">
-                                    <div hlmBadge variant="outline"> {{category.lessons}} lessons</div>
-                                    @if (category.progress > 0) {
+                                    <div hlmBadge variant="outline"> {{category.phrases}} lessons</div>
+                                    @if (category.progress != null && category.progress > 0) {
                                     <div variant="secondary" hlmBadge>{{category.progress}}% complete
                                     </div>
                                     }
@@ -81,7 +83,7 @@
                             </div>
                         </div>
                         <button hlmBtn [routerLink]="`/lessons/${category.id}`">
-                            {{ category.progress > 0 ? 'Continue' : 'Start Learning' }}
+                            {{ (category.progress != null && category.progress > 0) ? 'Continue' : 'Start Learning' }}
                         </button>
                     </div>
                 </div>
