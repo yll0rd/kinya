@@ -29,66 +29,73 @@
             <button hlmTabsTrigger='grid'>Grid View</button>
             <button hlmTabsTrigger='list'>List View</button>
         </hlm-tabs-list>
+      @if (isLoading) {
+        <div class="w-full h-[60vh] flex justify-center items-center">
+          <i class="pi animate-spin pi-spinner h-fit" style="font-size: 2rem;"></i>
+        </div>
+      } @else {
         <div hlmTabsContent='grid'>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols- mt-2">
-                @for (category of lessonCategories; track category.id) {
-                <div hlmCard class="transition-all hover:shadow-md">
-                    <div hlmCardHeader class="flex flex-row items-start justify-between pb-2">
-                        <div>
-                            <h3 hlmCardTitle class="text-xl">{{category.title}}</h3>
-                            <p class="text-sm text-muted-foreground">{{category.phrases}} lessons</p>
-                        </div>
-                        <i class="{{ category.icon }}" style="font-size: 2rem;"></i>
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols- mt-2">
+            @for (category of lessonCategories; track category.id) {
+              <div hlmCard class="transition-all hover:shadow-md">
+                <div hlmCardHeader class="flex flex-row items-start justify-between pb-2">
+                  <div>
+                    <h3 hlmCardTitle class="text-xl">{{category.title}}</h3>
+                    <p class="text-sm text-muted-foreground">{{category.phrases}} lessons</p>
+                  </div>
+                  <i class="{{ category.icon }}" style="font-size: 2rem;"></i>
 
-                    </div>
-                    <div hlmCardContent>
-                        <p class="mb-4 text-sm">{{category.description}}</p>
-                        <div class="mt-2">
-                          @if (category.progress != null) {
-                            <div class="h-2 w-full rounded-full bg-secondary">
-                                <div class="h-2 rounded-full bg-green-500" [style.width.%]="category.progress">
-                                </div>
-                            </div>
-                            <p class="mt-1 text-right text-sm">{{category.progress}}% complete</p>
-                          }
-                        </div>
-                    </div>
-                    <div hlmCardFooter>
-                        <button hlmBtn [routerLink]="`/lessons/${category.id}`" class="w-full">
-                            {{ !!category.progress && category.progress > 0 ? 'Continue' : 'Start Learning' }}
-                        </button>
-                    </div>
                 </div>
-                }
-            </div>
+                <div hlmCardContent>
+                  <p class="mb-4 text-sm">{{category.description}}</p>
+                  <div class="mt-2">
+                    @if (category.progress != null) {
+                      <div class="h-2 w-full rounded-full bg-secondary">
+                        <div class="h-2 rounded-full bg-green-500" [style.width.%]="category.progress">
+                        </div>
+                      </div>
+                      <p class="mt-1 text-right text-sm">{{category.progress}}% complete</p>
+                    }
+                  </div>
+                </div>
+                <div hlmCardFooter>
+                  <button hlmBtn [routerLink]="`/lessons/${category.id}`" class="w-full">
+                    {{ !!category.progress && category.progress > 0 ? 'Continue' : 'Start Learning' }}
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
         </div>
         <div hlmTabsContent='list'>
-            <div class="space-y-4">
-                @for (category of lessonCategories; track category.id) {
-                <div hlmCard class="transition-all hover:shadow-md">
-                    <div class="flex flex-col p-6 sm:flex-row sm:items-center sm:justify-between w-full">
-                        <div class="mb-4 flex items-start gap-4 sm:mb-0">
+          <div class="space-y-4">
+            @for (category of lessonCategories; track category.id) {
+              <div hlmCard class="transition-all hover:shadow-md">
+                <div class="flex flex-col p-6 sm:flex-row sm:items-center sm:justify-between w-full">
+                  <div class="mb-4 flex items-start gap-4 sm:mb-0">
                             <span class="rounded-lg bg-primary/10 p-2"><i class="{{ category.icon }}"
-                                    style="font-size: 2rem;"></i></span>
-                            <div>
-                                <h3 class="text-xl font-medium">{{category.title}}</h3>
-                                <p class="text-sm text-muted-foreground">{{category.description}}</p>
-                                <div class="mt-2 flex items-center gap-2">
-                                    <div hlmBadge variant="outline"> {{category.phrases}} lessons</div>
-                                    @if (category.progress != null && category.progress > 0) {
-                                    <div variant="secondary" hlmBadge>{{category.progress}}% complete
-                                    </div>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        <button hlmBtn [routerLink]="`/lessons/${category.id}`">
-                            {{ (category.progress != null && category.progress > 0) ? 'Continue' : 'Start Learning' }}
-                        </button>
+                                                                          style="font-size: 2rem;"></i></span>
+                    <div>
+                      <h3 class="text-xl font-medium">{{category.title}}</h3>
+                      <p class="text-sm text-muted-foreground">{{category.description}}</p>
+                      <div class="mt-2 flex items-center gap-2">
+                        <div hlmBadge variant="outline"> {{category.phrases}} lessons</div>
+                        @if (category.progress != null && category.progress > 0) {
+                          <div variant="secondary" hlmBadge>{{category.progress}}% complete
+                          </div>
+                        }
+                      </div>
                     </div>
+                  </div>
+                  <button hlmBtn [routerLink]="`/lessons/${category.id}`">
+                    {{ (category.progress != null && category.progress > 0) ? 'Continue' : 'Start Learning' }}
+                  </button>
                 </div>
-                }
-            </div>
+              </div>
+            }
+          </div>
         </div>
+      }
+
     </hlm-tabs>
 </main>

@@ -19,6 +19,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { LessonCategoriesService } from '../../services/lesson-categories.service';
 import { LessonCategory } from '../../models/LessonCategory.model';
 import { AuthService } from '../../services/auth.service';
+import {finalize} from 'rxjs';
 
 @Component({
   selector: 'app-lessons',
@@ -49,6 +50,7 @@ export class LessonsComponent implements OnInit {
     "pi pi-book text-green-600 dark:text-green-400",
     "pi pi-globe text-yellow-600 dark:text-yellow-400",
   ]
+  isLoading = false;
   @Input() lessonCategories: (LessonCategory & { icon: string })[] = [
     // {
     //   id: 1,
@@ -107,12 +109,18 @@ export class LessonsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.authService.isAuthenticated())
+    this.isLoading = true;
     this.lessonCategoriesService.getLessonCategories()
-      .subscribe(data => this.lessonCategories = data.map((lc, index) => ({
-        ...lc,
-        progress: this.authService.isAuthenticated() ? lc.progress : null,
-        icon: this.icons[index % this.icons.length]
-      })))
+      .pipe(finalize(() => this.isLoading = false))
+      .subscribe({
+          next: data => this.lessonCategories = data.map((lc, index) => ({
+            ...lc,
+            progress: this.authService.isAuthenticated() ? lc.progress : null,
+            icon: this.icons[index % this.icons.length]
+          })),
+          error: (err) => console.log(err)
+        }
+      )
   }
 
 }
