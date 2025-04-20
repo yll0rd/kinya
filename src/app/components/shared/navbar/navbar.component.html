@@ -54,7 +54,7 @@
               Sign Out
             </button>
           } @else {
-            <button hlmBtn size="sm" variant="default" routerLink="/login">
+            <button hlmBtn size="sm" variant="default" routerLink="/login" [queryParams]="{ returnUrl: getCurrentLocation() }">
               Sign In
             </button>
           }

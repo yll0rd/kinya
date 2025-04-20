@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, Location } from '@angular/common';
 import {Component, inject, signal} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
@@ -31,6 +31,7 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class NavbarComponent {
   private authService = inject(AuthService);
+  private location = inject(Location);
 
   routes = signal([
     {
@@ -58,6 +59,10 @@ export class NavbarComponent {
 
   isAuthenticated(): boolean {
     return this.authService.isAuthenticated();
+  }
+
+  getCurrentLocation(): string {
+    return this.location.path();
   }
 
   signOut() {
