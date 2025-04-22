@@ -15,7 +15,7 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/lessons/lessons.component').then(m => m.LessonsComponent)
     },
     {
-        path: 'lessons/:categoryId',
+        path: 'lessons/:categorySlug',
         loadComponent: () => import('./pages/detail-lesson/detail-lesson.component').then(m => m.DetailLessonComponent)
     },
     {

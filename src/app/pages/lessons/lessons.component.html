@@ -59,7 +59,7 @@
                   </div>
                 </div>
                 <div hlmCardFooter>
-                  <button hlmBtn [routerLink]="`/lessons/${category.id}`" class="w-full">
+                  <button hlmBtn routerLink="/lessons/{{category.slug}}" class="w-full">
                     {{ !!category.progress && category.progress > 0 ? 'Continue' : 'Start Learning' }}
                   </button>
                 </div>
@@ -87,7 +87,7 @@
                       </div>
                     </div>
                   </div>
-                  <button hlmBtn [routerLink]="`/lessons/${category.id}`">
+                  <button hlmBtn routerLink="/lessons/{{category.slug }}">
                     {{ (category.progress != null && category.progress > 0) ? 'Continue' : 'Start Learning' }}
                   </button>
                 </div>
