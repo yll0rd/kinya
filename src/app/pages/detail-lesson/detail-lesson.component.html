@@ -42,7 +42,7 @@
           <div hlmCardContent>
             <ul class="space-y-4">
               <!-- Loop through phrases and display them -->
-              @for(phrase of category.phrases; track phrase.id) {
+              @for(phrase of phrases; track phrase.id) {
                 <li>
                   <div
                     class="flex flex-col gap-2 rounded-lg border p-4 sm:flex-row sm:items-center sm:justify-between">
@@ -50,8 +50,12 @@
                       <p class="text-lg font-medium">{{phrase.kinyarwanda}}</p>
                       <p class="text-sm text-muted-foreground">{{phrase.english}}</p>
                     </div>
-                    <button hlmBtn variant="outline" size="icon" class="h-8 w-8 shrink-0">
-                      <i class="pi pi-play" style="font-size: 1rem;"></i>
+                    <button hlmBtn variant="outline" size="icon" class="h-8 w-8 shrink-0" (click)="playAudioForPhrase(phrase)">
+                      @if(phrase.isPlaying) {
+                        <i class="pi pi-pause" style="font-size: 1rem;"></i>
+                      } @else {
+                        <i class="pi pi-play" style="font-size: 1rem;"></i>
+                      }
                       <span class="sr-only">Play audio for {{phrase.kinyarwanda}}</span>
                     </button>
                   </div>

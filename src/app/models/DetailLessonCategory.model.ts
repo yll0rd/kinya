@@ -3,14 +3,14 @@ export interface DetailLessonCategory {
   title: string;
   description: string;
   slug: string;
-  phrases: Phrases;
+  phrases: Phrase[];
   progress: number;
 }
 
-type Phrases = {
+export type Phrase = {
   id: string;
   kinyarwanda: string;
   english: string;
   audioUrl: string | null;
   isKeyVocabulary: boolean;
-}[]
+}
