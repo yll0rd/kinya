@@ -1,29 +1,23 @@
-<header class="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-    <div class="container flex h-20 items-center justify-between px-4 mx-auto">
-      <a routerLink="/" class="flex items-center gap-2 font-bold">
-        <!-- <i class="pi pi-globe text-blue-600 dark:text-blue-400" style="font-size: 1.5rem;"></i> -->
-        <!-- <span class="hidden sm:inline-block font-satoshi font-semibold text-lg tracking-wide">Kinya</span> -->
-         <img src="/kinya-logo.png" alt="logo" class="w-30 h-25 rounded-full" />
-      </a>
+<header>
+  <div class="container flex h-20 items-center justify-between px-4 mx-auto">
+    <a routerLink="/" class="flex items-center gap-2 font-bold">
+      <img src="/kinya-logo.png" alt="logo" class="w-30 h-25 rounded-full" />
+    </a>
 
-      <!-- Desktop Navigation -->
+    <!-- Desktop Navigation -->
 
-      <nav class="hidden md:flex md:items-center md:gap-6">
-        <div class="flex gap-4">
-          <a
-            *ngFor="let route of routes()"
-            [routerLink]="route.disabled ? null : route.href"
-            [class.pointer-events-none]="route.disabled"
-            [class.opacity-50]="route.disabled"
-            [class.bg-accent]="isActive(route.href)"
-            [class.text-accent-foreground]="isActive(route.href)"
-            class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-          >
-            <i class="{{ route.icon }}" style="font-size: 1rem;"></i>
-            <span>{{ route.name }}</span>
-          </a>
-        </div>
-        <!-- <NavigationMenu>
+    <nav class="hidden md:flex md:items-center md:gap-6">
+      <div class="flex gap-4">
+        <a *ngFor="let route of routes" [class.hidden]="!route.shouldShow"
+          [routerLink]="route.disabled ? null : route.href" [class.pointer-events-none]="route.disabled"
+          [class.opacity-50]="route.disabled" [class.bg-accent]="isActive(route.href)"
+          [class.text-accent-foreground]="isActive(route.href)"
+          class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground">
+          <i class="{{ route.icon }}" style="font-size: 1rem;"></i>
+          <span>{{ route.name }}</span>
+        </a>
+      </div>
+      <!-- <NavigationMenu>
           <NavigationMenuList>
             {routes.map((route) => (
               <NavigationMenuItem key={route.name}>
@@ -45,70 +39,67 @@
           </NavigationMenuList>
         </NavigationMenu> -->
 
-        <div class="flex items-center gap-2">
-          <!-- <LanguageSwitcher /> -->
-          <app-theme-toggle />
+      <div class="flex items-center gap-2">
+        <!-- <LanguageSwitcher /> -->
+        <app-theme-toggle />
 
-          @if (isAuthenticated()) {
-            <button hlmBtn size="sm" variant="outline" (click)="signOut()">
-              Sign Out
-            </button>
-          } @else {
-            <button hlmBtn size="sm" variant="default" routerLink="/login" [queryParams]="{ returnUrl: getCurrentLocation() }">
-              Sign In
-            </button>
-          }
-        </div>
-      </nav>
+        @if (isAuthenticated()) {
+        <button hlmBtn size="sm" variant="outline" (click)="signOut()">
+          Sign Out
+        </button>
+        } @else {
+        <button hlmBtn size="sm" variant="default" [disabled]="isActive('/login')" routerLink="/login"
+          [queryParams]="{ returnUrl: getCurrentLocation() }">
+          Sign In
+        </button>
+        }
+      </div>
+    </nav>
 
-      <!-- Mobile Navigation -->
-      <div class="flex items-center gap-4 md:hidden">
-         <app-theme-toggle />
+    <!-- Mobile Navigation -->
+    <div class="flex items-center gap-4 md:hidden">
+      <app-theme-toggle />
 
-         <hlm-sheet>
+      <hlm-sheet>
 
-          <button hlmBtn brnSheetTrigger variant="outline" side="right">
-            <i class="pi pi-bars" style="font-size: 1.25rem;"></i>
-              <span class="sr-only">Toggle menu</span>
-          </button>
-          <hlm-sheet-content *brnSheetContent='let ctx'>
-            <div class="flex flex-col gap-6 py-6">
-              <a routerLink="/" class="flex items-center gap-2 font-bold">
-                <i class="pi pi-globe text-blue-600 dark:text-blue-400" style="font-size: 1.5rem;"></i>
-                <span>Kinya</span>
+        <button hlmBtn brnSheetTrigger variant="outline" side="right">
+          <i class="pi pi-bars" style="font-size: 1.25rem;"></i>
+          <span class="sr-only">Toggle menu</span>
+        </button>
+        <hlm-sheet-content *brnSheetContent='let ctx'>
+          <div class="flex flex-col gap-6 py-6">
+            <a routerLink="/" class="flex items-center gap-2 font-bold">
+              <i class="pi pi-globe text-blue-600 dark:text-blue-400" style="font-size: 1.5rem;"></i>
+              <span>Kinya</span>
+            </a>
+            <nav class="flex flex-col gap-4">
+              @for (route of routes ; track $index) {
+              <a [routerLink]="route.disabled ? null : route.href" [class.pointer-events-none]="route.disabled"
+                [class.opacity-50]="route.disabled" [class.bg-accent]="isActive(route.href)"
+                [class.text-accent-foreground]="isActive(route.href)"
+                class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground">
+                <i class="{{ route.icon }}" style="font-size: 1rem;"></i>
+                <span>{{ route.name }}</span>
               </a>
-              <nav class="flex flex-col gap-4">
-                @for (route of routes() ; track $index) {
-                  <a
-                    [routerLink]="route.disabled ? null : route.href"
-                    [class.pointer-events-none]="route.disabled"
-                    [class.opacity-50]="route.disabled"
-                    [class.bg-accent]="isActive(route.href)"
-                    [class.text-accent-foreground]="isActive(route.href)"
-                    class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
-                  >
-                    <i class="{{ route.icon }}" style="font-size: 1rem;"></i>
-                    <span>{{ route.name }}</span>
-                </a>
-                }
-              </nav>
-              <div class="flex flex-col gap-4">
-                <!-- <LanguageSwitcher /> -->
-                @if (isAuthenticated()) {
-                  <button hlmBtn variant="outline" (click)="signOut()">
-                    Sign Out
-                  </button>
-                } @else {
-                  <button hlmBtn routerLink="/login">
-                    Sign In
-                  </button>
-                }
-              </div>
+              }
+            </nav>
+            <div class="flex flex-col gap-4">
+              <!-- <LanguageSwitcher /> -->
+              @if (isAuthenticated()) {
+              <button hlmBtn variant="outline" (click)="signOut()">
+                Sign Out
+              </button>
+              } @else {
+              <button hlmBtn routerLink="/login">
+                Sign In
+              </button>
+              }
             </div>
-          </hlm-sheet-content>
+          </div>
+        </hlm-sheet-content>
       </hlm-sheet>
 
-        <!-- <Sheet>
+      <!-- <Sheet>
           <SheetTrigger asChild>
             <Button variant="outline" size="icon">
               <LucideMenu class="h-5 w-5" />
@@ -150,6 +141,6 @@
         </Sheet> -->
 
 
-      </div>
     </div>
-  </header>
+  </div>
+</header>

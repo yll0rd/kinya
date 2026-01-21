@@ -1,12 +1,4 @@
 import { Component } from '@angular/core';
-import {
-  HlmCardContentDirective,
-  HlmCardDescriptionDirective,
-  HlmCardDirective,
-  HlmCardFooterDirective,
-  HlmCardHeaderDirective,
-  HlmCardTitleDirective,
-} from '@spartan-ng/ui-card-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { Router, RouterLink } from '@angular/router';
@@ -25,14 +17,6 @@ import {NgClass} from '@angular/common';
 @Component({
   selector: 'app-signup',
   imports: [
-
-    HlmCardContentDirective,
-    HlmCardDescriptionDirective,
-    HlmCardDirective,
-    HlmCardFooterDirective,
-    HlmCardHeaderDirective,
-    HlmCardTitleDirective,
-
     HlmButtonDirective,
 
     HlmLabelDirective,
