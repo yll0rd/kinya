@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
 
 export const routes: Routes = [
     {
@@ -16,7 +17,8 @@ export const routes: Routes = [
     },
     {
         path: 'lessons/:categorySlug',
-        loadComponent: () => import('./pages/detail-lesson/detail-lesson.component').then(m => m.DetailLessonComponent)
+        loadComponent: () => import('./pages/detail-lesson/detail-lesson.component').then(m => m.DetailLessonComponent),
+        canActivate: [AuthenticatedGuard]
     },
     {
         path: 'login',
