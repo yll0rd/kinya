@@ -45,9 +45,6 @@ export class SignupComponent {
     private authService: AuthService,
     private fb: FormBuilder,
   ) {
-    if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/']);
-    }
 
     this.signUpForm = this.fb.group({
       name: new FormControl('', [Validators.required]),

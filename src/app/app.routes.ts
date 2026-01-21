@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
+import { UnAuthenticatedGuard } from './guards/unauthenticated.guard';
 
 export const routes: Routes = [
     {
@@ -22,10 +23,12 @@ export const routes: Routes = [
     },
     {
         path: 'login',
-        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent)
+        loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent),
+        canActivate: [UnAuthenticatedGuard]
     },
     {
         path: 'signup',
-        loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent)
+        loadComponent: () => import('./pages/signup/signup.component').then(m => m.SignupComponent),
+        canActivate: [UnAuthenticatedGuard]
     }
 ];

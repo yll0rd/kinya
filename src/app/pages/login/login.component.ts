@@ -44,10 +44,6 @@ export class LoginComponent {
     private authService: AuthService,
     private fb: FormBuilder,
   ) {
-    if (this.authService.isAuthenticated()) {
-      this.router.navigate(['/']);
-    }
-
     this.loginForm = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
