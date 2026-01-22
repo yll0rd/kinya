@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HlmBadgeDirective } from '@spartan-ng/ui-badge-helm';
 import {
   HlmTabsComponent,
@@ -16,10 +16,8 @@ import {
 } from '@spartan-ng/ui-card-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
-import { LessonCategoriesService } from '../../services/lesson-categories.service';
 import { LessonCategory } from '../../models/LessonCategory.model';
 import { AuthService } from '../../services/auth.service';
-import {finalize} from 'rxjs';
 
 @Component({
   selector: 'app-lessons',
@@ -103,24 +101,17 @@ export class LessonsComponent implements OnInit {
   ]
 
   constructor(
-    private lessonCategoriesService: LessonCategoriesService,
     private authService: AuthService,
-  ) {}
+    private activatedRoute: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.authService.isAuthenticated())
-    this.isLoading = true;
-    this.lessonCategoriesService.getLessonCategories()
-      .pipe(finalize(() => this.isLoading = false))
-      .subscribe({
-          next: data => this.lessonCategories = data.map((lc, index) => ({
-            ...lc,
-            progress: this.authService.isAuthenticated() ? lc.progress : null,
-            icon: this.icons[index % this.icons.length]
-          })),
-          error: (err) => console.log(err)
-        }
-      )
+    const dataFromResolver = (this.activatedRoute.snapshot.data['lessons'] || []) as LessonCategory[];
+    this.lessonCategories = dataFromResolver.map((lc, index) => ({
+      ...lc,
+      progress: this.authService.isAuthenticated ? lc.progress : null,
+      icon: this.icons[index % this.icons.length]
+    }))
   }
 
 }

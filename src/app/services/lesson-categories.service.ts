@@ -14,9 +14,9 @@ export class LessonCategoriesService {
   getLessonCategories(): Observable<LessonCategory[]> {
     return this.httpClient.get<LessonCategory[]>(`${this.apiUrl}/lesson-category`)
       .pipe(
-        tap(response => console.log(response)),
+        // tap(response => console.log(response)),
         catchError((error: HttpErrorResponse) => {
-          return throwError(() => error.error);
+          return throwError(() => error?.error || error);
         })
       )
   }

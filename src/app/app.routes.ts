@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { UnAuthenticatedGuard } from './guards/unauthenticated.guard';
+import { LessonsResolver } from './resolves/lessons.resolve';
 
 export const routes: Routes = [
     {
@@ -14,7 +15,8 @@ export const routes: Routes = [
     },
     {
         path: 'lessons',
-        loadComponent: () => import('./pages/lessons/lessons.component').then(m => m.LessonsComponent)
+        loadComponent: () => import('./pages/lessons/lessons.component').then(m => m.LessonsComponent),
+        resolve: { lessons: LessonsResolver }
     },
     {
         path: 'lessons/:categorySlug',
