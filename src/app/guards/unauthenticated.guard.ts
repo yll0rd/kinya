@@ -10,7 +10,7 @@ export class UnAuthenticatedGuard implements CanActivate {
   private _router = inject(Router);
 
   canActivate(_: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const isAuthenticated = this._authService.isAuthenticated();
+    const isAuthenticated = this._authService.isAuthenticated;
     if (isAuthenticated) {
       this._router.navigate(['/']);
       return false;

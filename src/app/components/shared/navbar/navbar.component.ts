@@ -71,7 +71,7 @@ export class NavbarComponent {
   }
 
   isAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
+    return this.authService.isAuthenticated;
   }
 
   getCurrentLocation(): string {

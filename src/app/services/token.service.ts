@@ -54,16 +54,16 @@ export class TokenService {
   // }
 
   getDecodedToken(): JwtPayload | null {
-      const token = this.getToken();
-      if (!token) return null;
+    const token = this.getToken();
+    if (!token) return null;
 
-      try {
-        return jwtDecode<JwtPayload>(token);
-      } catch (e) {
-        console.error('Invalid JWT token');
-        return null;
-      }
+    try {
+      return jwtDecode<JwtPayload>(token);
+    } catch (e) {
+      console.error('Invalid JWT token');
+      return null;
     }
+  }
 
   isTokenExpired(): boolean {
     const decoded = this.getDecodedToken();
@@ -73,23 +73,21 @@ export class TokenService {
   }
 
 
-  // public getTokenExpirationDate(): Date | null {
-  //   const token = this.getToken();
-  //   if (!token) {
-  //     return null;
-  //   }
+  /**
+   * Retrieves the expiration date of the current JWT token.
+   *
+   * Decodes the token and extracts the `exp` (expiration) claim.
+   * Returns a `Date` object representing the expiry time in UTC, or `null` if the token is invalid or does not contain an expiration claim.
+   *
+   * @returns {Date | null} The expiration date of the token, or `null` if unavailable.
+   */
+  public getTokenExpiryDate(): Date | null {
+    const decoded = this.getDecodedToken();
+    if (!decoded || decoded.exp === undefined)
+      return null;
 
-  //   try {
-  //     const decoded: any = jwt_decode(token);
-  //     if (decoded.exp === undefined) {
-  //       return null;
-  //     }
-
-  //     const date = new Date(0);
-  //     date.setUTCSeconds(decoded.exp);
-  //     return date;
-  //   } catch (e) {
-  //     return null;
-  //   }
-  // }
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
 }
